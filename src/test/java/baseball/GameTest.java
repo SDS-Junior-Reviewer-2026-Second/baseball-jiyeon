@@ -1,11 +1,24 @@
 package baseball;
 
+import org.example.baseball.Game;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
 
     @Test
+    void 게임을_생성하는_경우() {
+        Game game = new Game();
+        assertNotNull(game);
+    }
+
+    @Test
     public void 입력값이_없을_경우() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Game game = new Game();
+            game.guess(null);
+        });
     }
 
     @Test
@@ -14,7 +27,7 @@ public class GameTest {
     }
 
     @Test
-    public void 입력값에_숫자_외의_뮸자가_입력될_경우() {
+    public void 입력값에_숫자_외의_문자가_입력될_경우() {
 
     }
 
