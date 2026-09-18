@@ -1,10 +1,13 @@
 package baseball;
 
 import org.example.baseball.Game;
+import org.example.baseball.GuessResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.*;
 
 public class GameTest {
 
@@ -40,13 +43,14 @@ public class GameTest {
 
 
     @Test
-    public void 입력값에_숫자_외의_문자가_입력될_경우() {
+    void returnSolvedREsultIfMatchedNumber() {
+        game.question = "123";
+        GuessResult result = game.guess("123");
 
-    }
-
-    @Test
-    public void 입력값에_중복된_숫자가_입력될_경우() {
-
+        assertThat(result).isNotNull();
+        assertThat(result.solved).isEqualTo(true);
+        assertThat(result.strikes).isEqualTo(3);
+        assertThat(result.balls).isEqualTo(0);
     }
 
     @Test
